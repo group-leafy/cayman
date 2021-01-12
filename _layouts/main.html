@@ -21,16 +21,36 @@
   </head>
   <body>
     
-    <header class="page-header-in-page" role="banner">
-      <div class="page-header-container-in-page">
-        {% if site.show_app_icon %}
-        <a href="/" class="project-name-link-in-page"><img src="{{ site.app_icon }}" class="app-icon-in-page"></a>
-        {% endif %}
-        <a href="/" class="project-name-link-in-page">{{ page.title | default: site.title | default: site.github.repository_name }}</a>
-      </div>
+    <header class="page-header" role="banner">
+      <a href="/" class="project-name-link">{{ page.title | default: site.title | default: site.github.repository_name }}</a>
+      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+      {% if site.show_ios_download_btn %}
+        <a href="{{ site.ios_download_url }}" target="_blank" class="btn">{{ site.ios_download_btn_title }}</a>
+      {% endif %}
+      {% if site.show_android_download_btn %}
+        <a href="{{ site.android_download_url }}" target="_blank" class="btn">{{ site.android_download_btn_title }}</a>
+      {% endif %}
+      {% if site.show_web_download_btn %}
+        <a href="{{ site.web_download_url }}" target="_blank" class="btn">{{ site.web_download_btn_title }}</a>
+      {% endif %}
     </header>
 
     <main id="content" class="main-content" role="main">
+      {% if site.show_screenshot %}
+        <section>
+          <h2>Screenshots</h2>
+          <div class="screenshot-wrapper">
+            <div class="screenshot-list">
+              {% for ss_name in site.screenshots %}
+                <a class="screenshot-item" href="{{ ss_name }}">
+                  <img class="screenshot-img" src="{{ ss_name }}">
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+      {% endif %}
+
       {{ content }}
 
       <footer class="site-footer">
