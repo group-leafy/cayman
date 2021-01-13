@@ -4,6 +4,7 @@
 $header-bg-color: #8f68cf !default;
 $header-bg-color-secondary: #155799 !default;
 $section-headings-color: #8f68cf !default;
+$screenshot-item-width: 300px;
 
 @import 'jekyll-theme-cayman';
 
@@ -33,12 +34,32 @@ $section-headings-color: #8f68cf !default;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include medium {
+        display: list-item;
+        list-style: none;
+        text-align: center;
+    }
+
+    @include small {
+        display: list-item;
+        list-style: none;
+        text-align: center;
+    }
 }
 
 .footer_links {
     list-style: none;
     display: flex;
     padding-left: 0;
+    
+    @include medium {
+        justify-content: center;
+    }
+
+    @include small {
+        justify-content: center;
+    }
 }
 
 .footer_link {
@@ -79,7 +100,7 @@ $section-headings-color: #8f68cf !default;
 
 .screenshot-list {
     display: grid;
-    grid-template-columns: 200px 200px 200px 200px 200px 200px;
+    grid-template-columns: repeat(100, $screenshot-item-width);
     column-gap: 20px;
     padding: 30px 0;
 }
@@ -127,7 +148,7 @@ $section-headings-color: #8f68cf !default;
     height: 100%;
     display: block;
     margin-right: 0.5rem;
-    mask-image: url("/assets/image/ios-mask.svg");
+    mask-image: url("../image/ios-mask.svg");
     mask-size: cover;
 }
 
@@ -173,7 +194,7 @@ $section-headings-color: #8f68cf !default;
 
 .app-icon-in-main {
     border-radius: 22.5%;
-    mask-image: url("/assets/image/ios-mask.svg");
+    mask-image: url("../image/ios-mask.svg");
     mask-size: cover;
     width: 100%;
     height: auto;
