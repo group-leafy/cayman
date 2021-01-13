@@ -22,23 +22,49 @@
   <body>
     
     <header class="page-header" role="banner">
-      <a href="/" class="project-name-link">{{ page.title | default: site.title | default: site.github.repository_name }}</a>
-      <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
-      {% if site.show_ios_download_btn %}
+      <div class="page-header-container-in-main">
+        {% if site.show_app_icon %}
+        <div class="app-icon-wrapper-in-main">
+          <img class="app-icon-in-main" src="{{ site.app_icon }}">
+        </div>
+        {% endif %}
+        <div>
+          <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+          <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+          {% if site.show_ios_download_btn or site.show_android_download_btn or site.show_web_download_btn %}
+          <div class="project-btns-large">
+            {% if site.show_ios_download_btn %}
+            <a href="{{ site.ios_download_url }}" target="_blank" class="btn">{{ site.ios_download_btn_title }}</a>
+            {% endif %}
+            {% if site.show_android_download_btn %}
+            <a href="{{ site.android_download_url }}" target="_blank" class="btn">{{ site.android_download_btn_title }}</a>
+            {% endif %}
+            {% if site.show_web_download_btn %}
+            <a href="{{ site.web_download_url }}" target="_blank" class="btn">{{ site.web_download_btn_title }}</a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% if site.show_ios_download_btn or site.show_android_download_btn or site.show_web_download_btn %}
+      <div class="project-btns-small">
+        {% if site.show_ios_download_btn %}
         <a href="{{ site.ios_download_url }}" target="_blank" class="btn">{{ site.ios_download_btn_title }}</a>
-      {% endif %}
-      {% if site.show_android_download_btn %}
+        {% endif %}
+        {% if site.show_android_download_btn %}
         <a href="{{ site.android_download_url }}" target="_blank" class="btn">{{ site.android_download_btn_title }}</a>
-      {% endif %}
-      {% if site.show_web_download_btn %}
+        {% endif %}
+        {% if site.show_web_download_btn %}
         <a href="{{ site.web_download_url }}" target="_blank" class="btn">{{ site.web_download_btn_title }}</a>
+        {% endif %}
+      </div>
       {% endif %}
     </header>
 
     <main id="content" class="main-content" role="main">
       {% if site.show_screenshot %}
         <section>
-          <h2>Screenshots</h2>
+          <h2 class="screenshot-title">Screenshots</h2>
           <div class="screenshot-wrapper">
             <div class="screenshot-list">
               {% for ss_name in site.screenshots %}
